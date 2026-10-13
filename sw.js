@@ -1,7 +1,7 @@
 // Offline support: keeps the app files on the phone so it opens without internet.
-const CACHE = 'ms-po-v1.0.0';
+const CACHE = 'ms-po-v1.0.1';
 const FILES = ['./', './index.html', './styles.css', './config.js', './db.js', './pdf.js', './app.js', './manifest.webmanifest',
-  './lib/jspdf.umd.min.js', './lib/jspdf.plugin.autotable.min.js', './icons/icon-192.png', './icons/icon-512.png'];
+  './jspdf.umd.min.js', './jspdf.plugin.autotable.min.js', './icon-192.png', './icon-512.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => {
   e.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim()));
